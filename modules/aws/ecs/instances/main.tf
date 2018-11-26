@@ -124,11 +124,12 @@ data "aws_ami" "ecs_ami" {
 }
 
 resource "aws_launch_configuration" "launch_configuration" {
-    name_prefix             = "${var.name}-${var.cluster_name}-${var.instance_group}-"
-    image_id                = "${join("", data.aws_ami.ecs_ami.*.image_id)}"
-    instance_type           = "${var.instance_type}"
-    user_data               = "${data.template_file.user_data.rendered}"
-    iam_instance_profile    = "${var.iam_instance_profile_id}"
+    name_prefix                 = "${var.name}-${var.cluster_name}-${var.instance_group}-"
+    image_id                    = "${join("", data.aws_ami.ecs_ami.*.image_id)}"
+    instance_type               = "${var.instance_type}"
+    user_data                   = "${data.template_file.user_data.rendered}"
+    iam_instance_profile        = "${var.iam_instance_profile_id}"
+    associate_public_ip_address = true
 
     security_groups = [
         "${aws_security_group.security_group.id}"
