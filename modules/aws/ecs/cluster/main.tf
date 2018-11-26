@@ -24,7 +24,7 @@ module "ecs_events" {
     name            = "${var.name}"
     cluster_name    = "${var.cluster_name}"
     depends_on = [
-        "aws_ecs_cluster.cluster"
+        "${aws_ecs_cluster.cluster.arn}"
     ]
 }
 
