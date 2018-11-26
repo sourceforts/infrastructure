@@ -1,0 +1,53 @@
+version: 2
+
+jobs:
+  init:
+    working-directory: /sourceforts-infrastructure
+    docker:
+      - image: hashicorp/terraform
+    steps:
+      - attach_workspace:
+          at: /sourceforts-infrastructure
+      - checkout
+      - run: terraform init
+  validate:
+    working-directory: /sourceforts-infrastructure
+    steps:
+      - attach_workspace:
+          at: /sourceforts-infrastructure
+      - run: terraform validate
+  plan:
+    working-directory: /sourceforts-infrastructure
+    steps:
+      - attach_workspace:
+          at: /sourceforts-infrastructure
+      - run: terraform plan
+  apply:
+    working-directory: /sourceforts-infrastructure
+    steps:
+      - attach_workspace:
+          at: /sourceforts-infrastructure
+      - run: terraform apply
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - init:
+          context: sourceforts-server
+      - validate:
+          context: sourceforts-server
+          requires:
+            - init
+      - plan:
+          context: sourceforts-server
+          requires:
+            - validate
+      - hold-apply:
+          type: approval
+          requires:
+            - plan
+      - apply:
+          context: sourceforts-server
+          requires:
+            - hold-apply
