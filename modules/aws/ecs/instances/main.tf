@@ -107,7 +107,7 @@ resource "aws_launch_configuration" "launch_configuration" {
     iam_instance_profile    = "${var.iam_instance_profile_id}"
 
     security_groups = [
-        "${aws_security_group.security_group.instance.id}"
+        "${aws_security_group.security_group.id}"
     ]
 
     lifecycle {
