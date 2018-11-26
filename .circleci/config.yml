@@ -42,7 +42,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /sourceforts-infrastructure
-      - run: terraform apply
+      - run: terraform apply -auto-approve -refresh=true
 
 workflows:
   version: 2
