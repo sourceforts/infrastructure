@@ -109,7 +109,7 @@ data "aws_ami" "ecs_ami" {
 
   filter {
     name   = "owner-alias"
-    values = ["${var.ami_owners}"]
+    values = ["self", "amazon"]
   }
 
   filter {
