@@ -1,29 +1,32 @@
 version: 2
 
+defaults: &defaults
+  working_directory: /sourceforts-infrastructure
+  docker:
+    - image: hashicorp/terraform
+
 jobs:
   init:
-    working-directory: /sourceforts-infrastructure
-    docker:
-      - image: hashicorp/terraform
+    <<: *defaults
     steps:
       - attach_workspace:
           at: /sourceforts-infrastructure
       - checkout
       - run: terraform init
   validate:
-    working-directory: /sourceforts-infrastructure
+    <<: *defaults
     steps:
       - attach_workspace:
           at: /sourceforts-infrastructure
       - run: terraform validate
   plan:
-    working-directory: /sourceforts-infrastructure
+    <<: *defaults
     steps:
       - attach_workspace:
           at: /sourceforts-infrastructure
       - run: terraform plan
   apply:
-    working-directory: /sourceforts-infrastructure
+    <<: *defaults
     steps:
       - attach_workspace:
           at: /sourceforts-infrastructure
