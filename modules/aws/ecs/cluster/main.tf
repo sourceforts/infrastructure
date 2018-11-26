@@ -23,7 +23,6 @@ module "ecs_events" {
     region          = "${var.region}"
     name            = "${var.name}"
     cluster_name    = "${var.cluster_name}"
-
     depends_on = [
         "aws_ecs_cluster.cluster"
     ]

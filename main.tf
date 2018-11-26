@@ -30,7 +30,7 @@ module "us-east-1" {
     region = "us-east-1"
 
     providers = {
-        "aws" = "us-east-1"
+        "aws" = "aws.us-east-1"
     }
 }
 
@@ -39,7 +39,7 @@ module "eu-west-2" {
     region = "eu-west-2"
 
     providers = {
-        "aws" = "eu-west-2"
+        "aws" = "aws.eu-west-2"
     }
 }
 
@@ -48,6 +48,6 @@ module "ap-southeast-2" {
     region = "ap-southeast-2"
 
     providers = {
-        "aws" = "ap-southeast-2"
+        "aws" = "aws.ap-southeast-2"
     }
 }
