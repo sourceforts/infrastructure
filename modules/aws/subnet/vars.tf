@@ -5,6 +5,6 @@ variable "cidr_blocks" {
     type = "list"
 }
 
-variables "availability_zones" {
+variable "availability_zones" {
     type = "list"
 }

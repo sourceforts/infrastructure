@@ -3,6 +3,9 @@ variable "cluster_name" {}
 variable "vpc_id" {}
 variable "aws_ami" {}
 variable "iam_instance_profile_id" {}
+variable "subnet_ids" {
+    type = "list"
+}
 
 variable "instance_type" {
     default = "t2.micro"

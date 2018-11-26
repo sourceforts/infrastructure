@@ -14,11 +14,7 @@ module "aws_network" {
     vpc_cidr            = "${var.vpc_cidr}"
     subnet_cidrs        = "${var.subnet_cidrs}"
     availability_zones  = ["${var.region}a"]
-    min_size            = "${var.min_size}"
-    max_size            = "${var.max_size}"
-    desired_capacity    = "${var.desired_capacity}"
     instance_type       = "${local.instance_type}"
-    ecs_aws_ami         = "${local.ecs_aws_ami}"
 }
 
 module "aws_cluster" {
@@ -29,10 +25,12 @@ module "aws_cluster" {
     }
 
     name                = "${var.region}"
+    cluster_name        = "sourceforts"
     vpc_id              = "${module.aws_network.vpc_id}"
     min_size            = "${var.min_size}"
     max_size            = "${var.max_size}"
     desired_capacity    = "${var.desired_capacity}"
     instance_type       = "${local.instance_type}"
     instance_group      = "${var.instance_group}"
+    ecs_aws_ami         = "${local.ecs_aws_ami}"
 }
