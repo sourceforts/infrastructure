@@ -1,3 +1,32 @@
 provider "aws" {
-    region = "${var.region}"
+    alias   = "${local.provider_alias}"
+    region  = "${var.region}"
+}
+
+module "aws_network" {
+    source = "../aws/network"
+
+    provider            = "${local.provider_alias}"
+    name                = "${var.region}"
+    vpc_cidr            = "${var.vpc_cidr}"
+    subnet_cidrs        = "${var.subnet_cidrs}"
+    availability_zones  = ["${var.region}a"]
+    min_size            = "${var.min_size}"
+    max_size            = "${var.max_size}"
+    desired_capacity    = "${var.desired_capacity}"
+    instance_type       = "${local.instance_type}"
+    ecs_aws_ami         = "${local.ecs_aws_ami}"
+}
+
+module "aws_cluster" {
+    source = "../aws/ecs/cluster"
+
+    provider            = "${local.provider_alias}"
+    name                = "${var.region}"
+    vpc_id              = "${module.aws_network.vpc_id}"
+    min_size            = "${var.min_size}"
+    max_size            = "${var.max_size}"
+    desired_capacity    = "${var.desired_capacity}"
+    instance_type       = "${local.instance_type}"
+    instance_group      = "${var.instance_group}"
 }
