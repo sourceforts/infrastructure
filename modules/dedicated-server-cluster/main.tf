@@ -21,5 +21,4 @@ module "aws_cluster" {
     desired_capacity    = "${var.desired_capacity}"
     instance_type       = "${local.instance_type}"
     instance_group      = "${var.instance_group}"
-    ecs_aws_ami         = "${local.ecs_aws_ami}"
 }

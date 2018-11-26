@@ -99,9 +99,34 @@ resource "aws_security_group_rule" "outbound_internet_access_other_udp" {
     security_group_id   = "${aws_security_group.security_group.id}"
 }
 
+data "aws_ami" "ecs_ami" {
+  count       = "${var.lookup_latest_ami ? 1 : 0}"
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["amzn-ami-*-amazon-ecs-optimized"]
+  }
+
+  filter {
+    name   = "owner-alias"
+    values = ["${var.ami_owners}"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
 resource "aws_launch_configuration" "launch_configuration" {
     name_prefix             = "${var.name}-${var.cluster_name}-${var.instance_group}-"
-    image_id                = "${var.aws_ami}"
+    image_id                = "${var.lookup_latest_ami ? join("", data.aws_ami.ecs_ami.*.image_id) : join("", data.aws_ami.user_ami.*.image_id)}"
     instance_type           = "${var.instance_type}"
     user_data               = "${data.template_file.user_data.rendered}"
     iam_instance_profile    = "${var.iam_instance_profile_id}"
