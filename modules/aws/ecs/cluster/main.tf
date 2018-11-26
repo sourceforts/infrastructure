@@ -17,17 +17,6 @@ module "ecs_instances" {
     cloudwatch_prefix       = "${var.cloudwatch_prefix}"
 }
 
-module "ecs_events" {
-    source = "../events"
-
-    region          = "${var.region}"
-    name            = "${var.name}"
-    cluster_name    = "${var.cluster_name}"
-    depends_on = [
-        "${aws_ecs_cluster.cluster.arn}"
-    ]
-}
-
 resource "aws_ecs_cluster" "cluster" {
     name        = "${var.cluster_name}"
 }
