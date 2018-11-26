@@ -1,9 +1,11 @@
 variable "name" {}
 variable "cluster_name" {}
 variable "vpc_id" {}
-
 variable "instance_type" {}
 variable "ecs_aws_ami" {}
+variable "subnet_ids" {
+    type = "list"
+}
 
 variable "instance_group" {
     default = "default"
