@@ -13,18 +13,30 @@ jobs:
           at: /sourceforts-infrastructure
       - checkout
       - run: terraform init
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./
   validate:
     <<: *defaults
     steps:
       - attach_workspace:
           at: /sourceforts-infrastructure
       - run: terraform validate
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./
   plan:
     <<: *defaults
     steps:
       - attach_workspace:
           at: /sourceforts-infrastructure
       - run: terraform plan
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./
   apply:
     <<: *defaults
     steps:
