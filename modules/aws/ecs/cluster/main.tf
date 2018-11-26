@@ -1,6 +1,7 @@
 module "ecs_instances" {
     source = "../instances"
 
+    region                  = "${var.region}"
     name                    = "${var.name}"
     cluster_name            = "${var.cluster_name}"
     instance_group          = "${var.instance_group}"
@@ -14,6 +15,18 @@ module "ecs_instances" {
     iam_instance_profile_id = "${aws_iam_instance_profile.ecs.id}"
     custom_user_data        = "${var.custom_user_data}"
     cloudwatch_prefix       = "${var.cloudwatch_prefix}"
+}
+
+module "ecs_events" {
+    source = "../events"
+
+    region          = "${var.region}"
+    name            = "${var.name}"
+    cluster_name    = "${var.cluster_name}"
+
+    depends_on = [
+        "aws_ecs_cluster.cluster"
+    ]
 }
 
 resource "aws_ecs_cluster" "cluster" {

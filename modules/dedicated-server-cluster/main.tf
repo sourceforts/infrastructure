@@ -1,15 +1,7 @@
-provider "aws" {
-    alias   = "${local.provider_alias}"
-    region  = "${var.region}"
-}
-
 module "aws_network" {
     source = "../aws/network"
 
-    providers = {
-        "aws" = "${local.provider_alias}"
-    }
-
+    region              = "${var.region}"
     name                = "${var.region}"
     vpc_cidr            = "${var.vpc_cidr}"
     subnet_cidrs        = "${var.subnet_cidrs}"
@@ -19,10 +11,7 @@ module "aws_network" {
 module "aws_cluster" {
     source = "../aws/ecs/cluster"
 
-    providers = {
-        "aws" = "${local.provider_alias}"
-    }
-
+    region              = "${var.region}"
     name                = "${var.region}"
     cluster_name        = "sourceforts"
     vpc_id              = "${module.aws_network.vpc_id}"

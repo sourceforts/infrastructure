@@ -156,6 +156,7 @@ data "template_file" "user_data" {
     template = "${file("${path.module}/templates/user_data.sh")}"
 
     vars {
+        region              = "${var.region}"
         ecs_config          = "${var.ecs_config}"
         ecs_logging         = "${var.ecs_logging}"
         cluster_name        = "${var.cluster_name}"

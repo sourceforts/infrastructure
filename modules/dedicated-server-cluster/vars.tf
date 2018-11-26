@@ -31,7 +31,6 @@ variable "instance_group" {
 }
 
 locals {
-    provider_alias = "dedicated-server-cluster-${var.region}"
     instance_type = "t2.micro"
     ecs_aws_ami = "ami-95f8d2f3"
 }

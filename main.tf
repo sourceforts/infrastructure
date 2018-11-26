@@ -6,6 +6,21 @@ terraform {
     }
 }
 
+provider "aws" {
+    alias = "us-east-1"
+    region = "us-east-1"
+}
+
+provider "aws" {
+    alias = "eu-west-2"
+    region = "eu-west-2"
+}
+
+provider "aws" {
+    alias = "ap-southeast-2"
+    region = "ap-southeast-21"
+}
+
 module "updater" {
     source = "modules/updater"
 }
@@ -13,14 +28,26 @@ module "updater" {
 module "us-east-1" {
     source = "modules/dedicated-server-cluster"
     region = "us-east-1"
+
+    providers = {
+        "aws" = "us-east-1"
+    }
 }
 
 module "eu-west-2" {
     source = "modules/dedicated-server-cluster"
     region = "eu-west-2"
+
+    providers = {
+        "aws" = "eu-west-2"
+    }
 }
 
 module "ap-southeast-2" {
     source = "modules/dedicated-server-cluster"
     region = "ap-southeast-2"
+
+    providers = {
+        "aws" = "ap-southeast-2"
+    }
 }
