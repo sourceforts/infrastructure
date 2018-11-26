@@ -1,7 +1,3 @@
-variable "provider" {
-    default = "default"
-}
-
 variable "name" {}
 variable "cluster_name" {}
 variable "vpc_id" {}

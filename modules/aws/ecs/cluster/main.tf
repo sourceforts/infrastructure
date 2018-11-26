@@ -1,7 +1,6 @@
 module "ecs_instances" {
     source = "../instances"
-    
-    provider                = "${var.provider}"
+
     name                    = "${var.name}"
     cluster_name            = "${var.cluster_name}"
     instance_group          = "${var.instance_group}"
@@ -18,6 +17,5 @@ module "ecs_instances" {
 }
 
 resource "aws_ecs_cluster" "cluster" {
-    provider    = "${var.provider}"
     name        = "${var.cluster_name}"
 }

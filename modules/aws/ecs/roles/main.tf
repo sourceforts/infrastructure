@@ -1,5 +1,4 @@
 resource "aws_iam_role" "ecs_default_task" {
-    provider    = "${var.provider}"
     name        = "${var.name}-${var.cluster_name}-default-task"
     path        = "/ecs/"
 
@@ -48,7 +47,6 @@ EOF
 }
 
 resource "aws_iam_policy" "ecs_default_task" {
-    provider    = "${var.provider}"
     name        = "${var.name}-${var.cluster}-ecs-default-task"
     path        = "/"
 
@@ -56,7 +54,6 @@ resource "aws_iam_policy" "ecs_default_task" {
 }
 
 resource "aws_iam_policy_attachment" "ecs_default_task" {
-    provider    = "${var.provider}"
     name        = "${var.name}-${var.cluster_name}-ecs-default-task"
     policy_arn  = "${aws_iam_policy.ecs_default_task.arn}"
 

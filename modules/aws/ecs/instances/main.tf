@@ -1,5 +1,4 @@
 resource "aws_security_group" "security_group" {
-    provider    = "${var.provider}"
     name        = "${var.name}-${var.cluster_name}-${var.instance_group}"
     vpc_id      = "${var.vpc_id}"
 
@@ -11,7 +10,6 @@ resource "aws_security_group" "security_group" {
 }
 
 resource "aws_security_group_rule" "outbound_internet_access_game_tcp" {
-    provider            = "${var.provider}"
     type                = "egress"
     from_port           = 27015
     to_port             = 27015
@@ -21,7 +19,6 @@ resource "aws_security_group_rule" "outbound_internet_access_game_tcp" {
 }
 
 resource "aws_security_group_rule" "inbound_internet_access_game_tcp" {
-    provider            = "${var.provider}"
     type                = "ingress"
     from_port           = 27015
     to_port             = 27015
@@ -31,7 +28,6 @@ resource "aws_security_group_rule" "inbound_internet_access_game_tcp" {
 }
 
 resource "aws_security_group_rule" "outbound_internet_access_game_udp" {
-    provider            = "${var.provider}"
     type                = "egress"
     from_port           = 27015
     to_port             = 27015
@@ -41,7 +37,6 @@ resource "aws_security_group_rule" "outbound_internet_access_game_udp" {
 }
 
 resource "aws_security_group_rule" "inbound_internet_access_game_udp" {
-    provider            = "${var.provider}"
     type                = "ingress"
     from_port           = 27015
     to_port             = 27015
@@ -51,7 +46,6 @@ resource "aws_security_group_rule" "inbound_internet_access_game_udp" {
 }
 
 resource "aws_security_group_rule" "outbound_internet_access_client_udp" {
-    provider            = "${var.provider}"
     type                = "egress"
     from_port           = 27005
     to_port             = 27005
@@ -61,7 +55,6 @@ resource "aws_security_group_rule" "outbound_internet_access_client_udp" {
 }
 
 resource "aws_security_group_rule" "inbound_internet_access_client_udp" {
-    provider            = "${var.provider}"
     type                = "ingress"
     from_port           = 27005
     to_port             = 27005
@@ -71,7 +64,6 @@ resource "aws_security_group_rule" "inbound_internet_access_client_udp" {
 }
 
 resource "aws_security_group_rule" "outbound_internet_access_stv_udp" {
-    provider            = "${var.provider}"
     type                = "egress"
     from_port           = 27020
     to_port             = 27020
@@ -81,7 +73,6 @@ resource "aws_security_group_rule" "outbound_internet_access_stv_udp" {
 }
 
 resource "aws_security_group_rule" "inbound_internet_access_stv_udp" {
-    provider            = "${var.provider}"
     type                = "ingress"
     from_port           = 27020
     to_port             = 27020
@@ -91,7 +82,6 @@ resource "aws_security_group_rule" "inbound_internet_access_stv_udp" {
 }
 
 resource "aws_security_group_rule" "outbound_internet_access_steam_udp" {
-    provider            = "${var.provider}"
     type                = "egress"
     from_port           = 26900
     to_port             = 26900
@@ -101,7 +91,6 @@ resource "aws_security_group_rule" "outbound_internet_access_steam_udp" {
 }
 
 resource "aws_security_group_rule" "outbound_internet_access_other_udp" {
-    provider            = "${var.provider}"
     type                = "egress"
     from_port           = 51840
     to_port             = 51840
@@ -111,7 +100,6 @@ resource "aws_security_group_rule" "outbound_internet_access_other_udp" {
 }
 
 resource "aws_launch_configuration" "launch_configuration" {
-    provider                = "${var.provider}"
     name_prefix             = "${var.name}-${var.cluster_name}-${var.instance_group}-"
     image_id                = "${var.aws_ami}"
     instance_type           = "${var.instance_type}"
@@ -128,7 +116,6 @@ resource "aws_launch_configuration" "launch_configuration" {
 }
 
 resource "aws_autoscaling_group" "asg" {
-    provider                = "${var.provider}"
     name                    = "${var.name}-${var.cluster_name}-${var.instance_group}"
     max_size                = "${var.max_size}"
     min_size                = "${var.min_size}"

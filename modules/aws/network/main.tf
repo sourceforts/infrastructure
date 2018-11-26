@@ -1,7 +1,6 @@
 module "vpc" {
     source = "../vpc"
 
-    provider    = "${var.provider}"
     name        = "${var.name}"
     cidr_block  = "${var.vpc_cidr}"
 }
@@ -9,7 +8,6 @@ module "vpc" {
 module "subnet" {
     source = "../subnet"
 
-    provider            = "${var.provider}"
     name                = "${var.name}"
     vpc_id              = "${module.vpc.vpc_id}"
     cidr_blocks         = "${var.subnet_cidrs}"

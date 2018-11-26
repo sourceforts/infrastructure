@@ -6,7 +6,10 @@ provider "aws" {
 module "aws_network" {
     source = "../aws/network"
 
-    provider            = "${local.provider_alias}"
+    providers = {
+        "aws" = "${local.provider_alias}"
+    }
+
     name                = "${var.region}"
     vpc_cidr            = "${var.vpc_cidr}"
     subnet_cidrs        = "${var.subnet_cidrs}"
@@ -21,7 +24,10 @@ module "aws_network" {
 module "aws_cluster" {
     source = "../aws/ecs/cluster"
 
-    provider            = "${local.provider_alias}"
+    providers = {
+        "aws" = "${local.provider_alias}"
+    }
+
     name                = "${var.region}"
     vpc_id              = "${module.aws_network.vpc_id}"
     min_size            = "${var.min_size}"
