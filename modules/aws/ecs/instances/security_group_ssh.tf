@@ -1,3 +1,4 @@
+# TODO: Don't allow connections via SSH via anywhere on the internet!
 resource "aws_security_group" "security_group_ssh" {
     name        = "${var.name}-${var.cluster_name}-${var.instance_group}-ssh"
     vpc_id      = "${var.vpc_id}"

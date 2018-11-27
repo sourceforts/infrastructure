@@ -52,7 +52,8 @@ module "container_instance_group" {
     subnet_ids              = "${var.subnet_ids}"
     security_groups         = [
         "${aws_security_group.security_group_game.id}",
-        "${aws_security_group.security_group_ssh.id}"
+        "${aws_security_group.security_group_ssh.id}",
+        "${aws_security_group.security_group_init.id}",
     ]
     instance_type           = "${var.instance_type}"
     min_size                = "${var.min_size}"
