@@ -22,6 +22,10 @@ data "aws_ami" "ecs_ami" {
   }
 }
 
+resource "aws_eip" "instance_public_ip" {
+    vpc = true
+}
+
 data "template_file" "user_data" {
     template = "${file("${path.module}/templates/user_data.sh")}"
 
@@ -37,7 +41,7 @@ data "template_file" "user_data" {
     }
 }
 
-module "ec2_container_instances" {
+module "container_instance_group" {
     source = "../../ec2/instance-group-public"
 
     region                  = "${var.region}"
