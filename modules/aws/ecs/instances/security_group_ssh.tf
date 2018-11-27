@@ -15,7 +15,7 @@ resource "aws_security_group_rule" "outbound_internet_access_ssh" {
     to_port             = 22
     protocol            = "tcp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group.id}"
+    security_group_id   = "${aws_security_group.security_group_ssh.id}"
 }
 
 resource "aws_security_group_rule" "inbound_internet_access_ssh" {
@@ -24,5 +24,5 @@ resource "aws_security_group_rule" "inbound_internet_access_ssh" {
     to_port             = 22
     protocol            = "tcp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group.id}"
+    security_group_id   = "${aws_security_group.security_group_ssh.id}"
 }

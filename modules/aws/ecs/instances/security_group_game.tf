@@ -15,7 +15,7 @@ resource "aws_security_group_rule" "outbound_internet_access_game_tcp" {
     to_port             = 27015
     protocol            = "tcp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group.id}"
+    security_group_id   = "${aws_security_group.security_group_game.id}"
 }
 
 resource "aws_security_group_rule" "inbound_internet_access_game_tcp" {
@@ -24,7 +24,7 @@ resource "aws_security_group_rule" "inbound_internet_access_game_tcp" {
     to_port             = 27015
     protocol            = "tcp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group.id}"
+    security_group_id   = "${aws_security_group.security_group_game.id}"
 }
 
 resource "aws_security_group_rule" "outbound_internet_access_game_udp" {
@@ -33,7 +33,7 @@ resource "aws_security_group_rule" "outbound_internet_access_game_udp" {
     to_port             = 27015
     protocol            = "udp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group.id}"
+    security_group_id   = "${aws_security_group.security_group_game.id}"
 }
 
 resource "aws_security_group_rule" "inbound_internet_access_game_udp" {
@@ -42,7 +42,7 @@ resource "aws_security_group_rule" "inbound_internet_access_game_udp" {
     to_port             = 27015
     protocol            = "udp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group.id}"
+    security_group_id   = "${aws_security_group.security_group_game.id}"
 }
 
 resource "aws_security_group_rule" "outbound_internet_access_client_udp" {
@@ -51,7 +51,7 @@ resource "aws_security_group_rule" "outbound_internet_access_client_udp" {
     to_port             = 27005
     protocol            = "udp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group.id}"
+    security_group_id   = "${aws_security_group.security_group_game.id}"
 }
 
 resource "aws_security_group_rule" "inbound_internet_access_client_udp" {
@@ -60,7 +60,7 @@ resource "aws_security_group_rule" "inbound_internet_access_client_udp" {
     to_port             = 27005
     protocol            = "udp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group.id}"
+    security_group_id   = "${aws_security_group.security_group_game.id}"
 }
 
 resource "aws_security_group_rule" "outbound_internet_access_stv_udp" {
@@ -69,7 +69,7 @@ resource "aws_security_group_rule" "outbound_internet_access_stv_udp" {
     to_port             = 27020
     protocol            = "udp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group.id}"
+    security_group_id   = "${aws_security_group.security_group_game.id}"
 }
 
 resource "aws_security_group_rule" "inbound_internet_access_stv_udp" {
@@ -78,7 +78,7 @@ resource "aws_security_group_rule" "inbound_internet_access_stv_udp" {
     to_port             = 27020
     protocol            = "udp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group.id}"
+    security_group_id   = "${aws_security_group.security_group_game.id}"
 }
 
 resource "aws_security_group_rule" "outbound_internet_access_steam_udp" {
@@ -87,7 +87,7 @@ resource "aws_security_group_rule" "outbound_internet_access_steam_udp" {
     to_port             = 26900
     protocol            = "udp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group.id}"
+    security_group_id   = "${aws_security_group.security_group_game.id}"
 }
 
 resource "aws_security_group_rule" "outbound_internet_access_other_udp" {
@@ -96,5 +96,5 @@ resource "aws_security_group_rule" "outbound_internet_access_other_udp" {
     to_port             = 51840
     protocol            = "udp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group.id}"
+    security_group_id   = "${aws_security_group.security_group_game.id}"
 }
