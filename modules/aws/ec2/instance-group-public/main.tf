@@ -5,7 +5,7 @@ resource "aws_launch_configuration" "launch_configuration" {
     user_data                   = "${var.user_data}"
     iam_instance_profile        = "${var.iam_instance_profile_id}"
     key_name                    = "${var.name}-${var.cluster_name}-ssh-access-key"
-    security_groups             = "${var.security_groups}"
+    security_groups             = ["${var.security_groups}"]
     associate_public_ip_address = true
 
     lifecycle {
