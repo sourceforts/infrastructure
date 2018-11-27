@@ -89,6 +89,9 @@ instance_arn=$(curl -s http://localhost:51678/v1/metadata | jq -r '. | .Containe
 az=$(curl -s http://instance-data/latest/meta-data/placement/availability-zone)
 region=$${az:0:$${#az} - 1}
 
+# Associate EIP with this instance
+aws ec2 associate-address --instance-id $(curl http://169.254.169.254/latest/meta-data/instance-id) --allocation-id $eip_allocation_id --allow-reassociation
+
 #Custom userdata script code
 ${custom_user_data}
 
