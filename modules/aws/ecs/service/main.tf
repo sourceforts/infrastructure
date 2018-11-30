@@ -1,17 +1,56 @@
-data "template_file" "container_definition" {
-    template = "${file("${path.module}/templates/container-definition.json")}"
-
-    vars {
-        name            = "${var.name}"
-        image           = "sourceforts/server"
-        cpu_reservation = 512
-        mem_reservation = 256
-        hostname        = "${var.region}"
-    }
-}
 resource "aws_ecs_task_definition" "task_definition" {
     family                  = "${var.name}"
-    container_definitions   = "${file("${path.module}/templates/container-definition.json")}"
+    container_definitions   = <<EOF
+[
+    {
+        "name": "${var.name}",
+        "image": "sourceforts/server",
+        "cpu": 512,
+        "memoryReservation": 256,
+        "logConfiguration": {
+            "logDriver": "awslogs"
+        },
+        "portMappings": [
+            {
+                "hostPort": 27015,
+                "containerPort": 27015,
+                "protocol": "tcp"
+            },
+            {
+                "hostPort": 27015,
+                "containerPort": 27015,
+                "protocol": "udp"
+            },
+            {
+                "hostPort": 27005,
+                "containerPort": 27005,
+                "protocol": "udp"
+            },
+            {
+                "hostPort": 27020,
+                "containerPort": 27020,
+                "protocol": "udp"
+            },
+            {
+                "hostPort": 26900,
+                "containerPort": 26900,
+                "protocol": "udp"
+            },
+            {
+                "hostPort": 51840,
+                "containerPort": 51840,
+                "protocol": "udp"
+            }
+        ],
+        "environment": [
+            {
+                "name": "HOSTNAME",
+                "value": "aws-${var.region}"
+            }
+        ]
+    }
+]
+EOF
 
     tags {
         name = "${var.name}"
