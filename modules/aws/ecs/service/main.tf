@@ -1,55 +1,5 @@
 data "template_file" "container_definition" {
-    template = <<DEFINITION
-[
-    {
-        "name": "$${name}"
-        "image": "$${image}",
-        "cpu": $${cpu_reservation},
-        "memoryReservation": $${mem_reservation},
-        "logConfiguration": {
-            "logDriver": "awslogs"
-        },
-        "portMappings": [
-            {
-                "hostPort": 27015,
-                "protocol": "tcp",
-                "containerPort": 27015
-            },
-            {
-                "hostPort": 27015,
-                "protocol": "udp",
-                "containerPort": 27015
-            },
-            {
-                "hostPort": 27005,
-                "protocol": "udp",
-                "containerPort": 27005
-            },
-            {
-                "hostPort": 27020,
-                "protocol": "udp",
-                "containerPort": 27020
-            },
-            {
-                "hostPort": 26900,
-                "protocol": "udp",
-                "containerPort": 26900
-            },
-            {
-                "hostPort": 51840,
-                "protocol": "udp",
-                "containerPort": 51840
-            }
-      ],
-      "environment": [
-            {
-                "name": "HOSTNAME",
-                "value": "aws-$${hostname}"
-            }
-      ],      
-    }
-]
-DEFINITION
+    template = "${file("${path.module}/templates/container-definition.json")}"
 
     vars {
         name            = "${var.name}"
