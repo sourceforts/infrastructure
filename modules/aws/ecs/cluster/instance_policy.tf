@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_instance_role" {
-    name        = "${var.name}-ecs-instance-role"
+    name = "${var.name}-ecs-instance-role"
 
     assume_role_policy = <<EOF
 {
@@ -11,7 +11,20 @@ resource "aws_iam_role" "ecs_instance_role" {
         "Service": ["ec2.amazonaws.com"]
       },
       "Effect": "Allow"
-    },
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "association_policy" {
+  name = "${var.name}-ecs-instance-association-policy"
+  role = "${aws_iam_role.ecs_instance_role.id}"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
     {
       "Action": [
          "ec2:AssociateAddress",
