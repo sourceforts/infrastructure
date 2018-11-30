@@ -77,3 +77,8 @@ resource "aws_ecs_service" "service" {
         create_before_destroy = true
     }
 }
+
+resource "aws_cloudwatch_log_group" "ecs-agent" {
+    name              = "/ecs/${var.name}"
+    retention_in_days = 30
+}
