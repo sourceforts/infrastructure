@@ -11,7 +11,7 @@ data "template_file" "container_definition" {
 }
 resource "aws_ecs_task_definition" "task_definition" {
     family                  = "${var.name}"
-    container_definitions   = "${data.template_file.container_definition.rendered}"
+    container_definitions   = "${file("${path.module}/templates/container-definition.json")}"
 
     tags {
         name = "${var.name}"
