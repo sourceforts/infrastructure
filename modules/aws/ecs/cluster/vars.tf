@@ -3,6 +3,7 @@ variable "name" {}
 variable "cluster_name" {}
 variable "vpc_id" {}
 variable "instance_type" {}
+variable "aws_eip_id" {}
 variable "subnet_ids" {
     type = "list"
 }

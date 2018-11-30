@@ -22,10 +22,6 @@ data "aws_ami" "ecs_ami" {
   }
 }
 
-resource "aws_eip" "instance_public_ip" {
-    vpc = true
-}
-
 data "template_file" "user_data" {
     template = "${file("${path.module}/templates/user_data.sh")}"
 
@@ -37,7 +33,7 @@ data "template_file" "user_data" {
         env_name            = "${var.name}"
         custom_user_data    = "${var.custom_user_data}"
         cloudwatch_prefix   = "${var.cloudwatch_prefix}"
-        eip_association     = "${aws_eip.instance_public_ip.id}"
+        eip_association     = "${var.aws_eip_id}"
     }
 }
 

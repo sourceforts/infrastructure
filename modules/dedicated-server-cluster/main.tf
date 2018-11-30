@@ -1,3 +1,15 @@
+data "aws_route53_zone" "piston_zone" {
+    name = "piston.sh."
+}
+
+module "domain" {
+    source = "../aws/route53/subdomain"
+
+    name            = "${var.region}.sourceforts"
+    root_domain     = "piston.sh"
+    root_zone_id    = "${data.aws_route53_zone.piston_zone.id}"
+}
+
 module "aws_network" {
     source = "../aws/network"
 
@@ -21,6 +33,7 @@ module "aws_cluster" {
     desired_capacity    = "${var.desired_capacity}"
     instance_type       = "${local.instance_type}"
     instance_group      = "${var.instance_group}"
+    aws_eip_id          = "${module.domain.aws_eip_id}"
 }
 
 module "aws_server" {

@@ -21,10 +21,6 @@ provider "aws" {
     region = "ap-southeast-2"
 }
 
-module "updater" {
-    source = "modules/updater"
-}
-
 module "us-east-1" {
     source = "modules/dedicated-server-cluster"
     region = "us-east-1"
