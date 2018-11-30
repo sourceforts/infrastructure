@@ -19,7 +19,7 @@ resource "aws_route53_record" "nameservers" {
     ]
 }
 
-resource "aws_route_53_record" "root_nameservers" {
+resource "aws_route53_record" "root_nameservers" {
     zone_id = "${var.root_zone_id}"
     name    = "${var.name}.${var.root_domain}"
     type    = "NS"
