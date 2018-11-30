@@ -2,7 +2,7 @@ module "aws_network" {
     source = "../aws/network"
 
     region              = "${var.region}"
-    name                = "${var.region}"
+    name                = "${var.region}-${var.env}"
     vpc_cidr            = "${var.vpc_cidr}"
     subnet_cidrs        = "${var.subnet_cidrs}"
     availability_zones  = ["${var.region}a"]
@@ -12,8 +12,8 @@ module "aws_cluster" {
     source = "../aws/ecs/cluster"
 
     region              = "${var.region}"
-    name                = "${var.region}"
-    cluster_name        = "sourceforts"
+    name                = "${var.region}-${var.env}"
+    cluster_name        = "${var.env}"
     vpc_id              = "${module.aws_network.vpc_id}"
     subnet_ids          = "${module.aws_network.subnet_ids}"
     min_size            = "${var.min_size}"
@@ -21,4 +21,13 @@ module "aws_cluster" {
     desired_capacity    = "${var.desired_capacity}"
     instance_type       = "${local.instance_type}"
     instance_group      = "${var.instance_group}"
+}
+
+module "server" {
+    source = "../aws/ecs/service"
+
+    region          = "${var.region}"
+    name            = "${var.region}-${var.env}"
+    cluster_name    = "${var.env}"
+    desired_count   = 1
 }
