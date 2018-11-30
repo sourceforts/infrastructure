@@ -76,8 +76,4 @@ resource "aws_ecs_service" "service" {
     lifecycle {
         create_before_destroy = true
     }
-
-    tags {
-        name = "${var.name}"
-    }
 }
