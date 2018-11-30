@@ -2,10 +2,10 @@ data "template_file" "container_definition" {
     template = <<DEFINITION
 [
     {
-        "name": "${name}"
-        "image": "${image}",
-        "cpu": ${cpu_reservation},
-        "memoryReservation": ${mem_reservation},
+        "name": "$${name}"
+        "image": "$${image}",
+        "cpu": $${cpu_reservation},
+        "memoryReservation": $${mem_reservation},
         "logConfiguration": {
             "logDriver": "awslogs"
         },
@@ -44,7 +44,7 @@ data "template_file" "container_definition" {
       "environment": [
             {
                 "name": "HOSTNAME",
-                "value": "aws-${hostname}"
+                "value": "aws-$${hostname}"
             }
       ],      
     }
