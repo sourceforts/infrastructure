@@ -10,33 +10,33 @@
         "portMappings": [
             {
                 "hostPort": 27015,
-                "protocol": "tcp",
-                "containerPort": 27015
+                "containerPort": 27015,
+                "protocol": "tcp"
             },
             {
                 "hostPort": 27015,
-                "protocol": "udp",
-                "containerPort": 27015
+                "containerPort": 27015,
+                "protocol": "udp"
             },
             {
                 "hostPort": 27005,
-                "protocol": "udp",
-                "containerPort": 27005
+                "containerPort": 27005,
+                "protocol": "udp"
             },
             {
                 "hostPort": 27020,
-                "protocol": "udp",
-                "containerPort": 27020
+                "containerPort": 27020,
+                "protocol": "udp"
             },
             {
                 "hostPort": 26900,
-                "protocol": "udp",
-                "containerPort": 26900
+                "containerPort": 26900,
+                "protocol": "udp"
             },
             {
                 "hostPort": 51840,
-                "protocol": "udp",
-                "containerPort": 51840
+                "containerPort": 51840,
+                "protocol": "udp"
             }
         ],
         "environment": [
