@@ -8,7 +8,9 @@ resource "aws_ecs_task_definition" "task_definition" {
         "cpu": 512,
         "memoryReservation": 256,
         "logConfiguration": {
-            "logDriver": "awslogs"
+            "logDriver": "awslogs",
+            "awslogs-region": "${var.region}",
+            "awslogs-group": "ecs/${var.name}"
         },
         "portMappings": [
             {
