@@ -78,7 +78,7 @@ end script
 EOF
 
 # Associate EIP with this instance
-aws ec2 associate-address --instance-id $(curl http://169.254.169.254/latest/meta-data/instance-id) --allocation-id $eip_allocation_id --allow-reassociation
+aws ec2 associate-address --instance-id $(curl http://169.254.169.254/latest/meta-data/instance-id) --allocation-id ${eip_allocation_id} --allow-reassociation
 
 start ecs
 
