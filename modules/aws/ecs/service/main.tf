@@ -9,8 +9,11 @@ resource "aws_ecs_task_definition" "task_definition" {
         "memoryReservation": 256,
         "logConfiguration": {
             "logDriver": "awslogs",
-            "awslogs-region": "${var.region}",
-            "awslogs-group": "ecs/${var.name}"
+            "options": {
+                "awslogs-group": "/ecs/${var.name}",
+                "awslogs-region": "${var.region}",
+                "awslogs-stream-prefix": "ecs"
+            }
         },
         "portMappings": [
             {
