@@ -33,7 +33,7 @@ data "template_file" "user_data" {
         env_name            = "${var.name}"
         custom_user_data    = "${var.custom_user_data}"
         cloudwatch_prefix   = "${var.cloudwatch_prefix}"
-        eip_association     = "${var.aws_eip_id}"
+        eip_allocation_id   = "${var.aws_eip_id}"
     }
 }
 
