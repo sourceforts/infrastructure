@@ -6,7 +6,7 @@ resource "aws_route53_zone" "hosted_zone" {
 }
 
 resource "aws_route53_record" "nameservers" {
-  zone_id = "${var.zone_id}"
+  zone_id = "${aws_route53_zone.hosted_zone.zone_id}"
   name    = "${var.name}.${var.root_domain}"
   type    = "NS"
   ttl     = "30"
