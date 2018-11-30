@@ -11,7 +11,16 @@ resource "aws_iam_role" "ecs_instance_role" {
         "Service": ["ec2.amazonaws.com"]
       },
       "Effect": "Allow"
-    }
+    },
+    {
+      "Action": [
+         "ec2:AssociateAddress",
+         "ec2:DisassociateAddress",
+         "ec2:ReleaseAddress"
+      ],
+      "Resource": "*",
+      "Effect": "Allow"
+    },
   ]
 }
 EOF
