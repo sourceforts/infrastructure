@@ -60,7 +60,7 @@ module "container_instance_group" {
     max_size                = "${var.max_size}"
     desired_capacity        = "${var.desired_capacity}"
     vpc_id                  = "${var.vpc_id}"
-    iam_instance_profile_id = "${var.iam_instance_profile_id}"
+    iam_instance_profile_id = "${aws_iam_instance_profile.ecs.id}"
     user_data               = "${data.template_file.user_data.rendered}"
     cloudwatch_prefix       = "${var.cloudwatch_prefix}"
 }

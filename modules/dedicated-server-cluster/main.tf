@@ -23,7 +23,7 @@ module "aws_cluster" {
     instance_group      = "${var.instance_group}"
 }
 
-module "server" {
+module "aws_server" {
     source = "../aws/ecs/service"
 
     region          = "${var.region}"
