@@ -46,6 +46,32 @@ resource "aws_iam_role_policy_attachment" "function_logging_attachment" {
   policy_arn = "${aws_iam_policy.function_logging.arn}"
 }
 
+resource "aws_iam_policy" "function_describe_addresses" {
+  name = "lambda_logging"
+  path = "/"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "ec2:DescribeAddresses",
+        "secretsmanager:GetSecretValue"
+      ],
+      "Resource": "*",
+      "Effect": "Allow"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "function_logging_attachment" {
+  role = "${aws_iam_role.function_iam_role.name}"
+  policy_arn = "${aws_iam_policy.function_describe_addresses.arn}"
+}
+
 resource "aws_lambda_function" "function" {
     function_name   = "${var.name}"
     s3_bucket       = "${var.bucket_name}"
