@@ -53,6 +53,6 @@ module "platform" {
     region = "eu-west-2"
 
     providers = {
-        "aws" = "aws.ap-southeast-2"
+        "aws" = "aws.eu-west-2"
     }   
 }
