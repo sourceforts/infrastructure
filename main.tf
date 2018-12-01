@@ -48,31 +48,11 @@ module "ap-southeast-2" {
     }
 }
 
-resource "aws_s3_bucket" "lambda_bucket" {
-  bucket = "sourceforts-lambdas"
-  acl = "private"
-
-  versioning {
-    enabled = true
-  }
-}
-
-module "server-notifier" {
-    source              = "modules/server-notifier"
-    region              = "eu-west-2"
-    lambda_bucket_name  = "${aws_s3_bucket.lambda_bucket.id}"
+module "platform" {
+    source = "modules/platform"
+    region = "eu-west-2"
 
     providers = {
-        "aws" = "aws.eu-west-2"
-    }
-}
-
-module "build-invoker" {
-    source              = "modules/build-invoker"
-    region              = "eu-west-2"
-    lambda_bucket_name  = "${aws_s3_bucket.lambda_bucket.id}"
-
-    providers = {
-        "aws" = "aws.eu-west-2"
-    }
+        "aws" = "aws.ap-southeast-2"
+    }   
 }

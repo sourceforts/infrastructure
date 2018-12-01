@@ -3,7 +3,7 @@ data "aws_route53_zone" "piston_zone" {
 }
 
 module "domain" {
-    source = "../aws/route53/subdomain"
+    source = "../aws/route53/public-subdomain"
 
     name            = "${var.region}.sourceforts"
     root_domain     = "piston.sh"
