@@ -13,7 +13,7 @@ resource "aws_s3_bucket" "artifact_bucket" {
 }
 
 module "handler" {
-    source      = "../aws/lambda"
+    source      = "../../aws/lambda"
 
     name        = "${local.function_name}"
     bucket_name = "${var.lambda_bucket_name}"
