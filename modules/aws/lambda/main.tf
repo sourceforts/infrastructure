@@ -30,7 +30,8 @@ resource "aws_iam_policy" "function_logging" {
       "Action": [
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
-        "logs:PutLogEvents"
+        "logs:PutLogEvents",
+        "logs:DescribeLogStreams"
       ],
       "Resource": "arn:aws:logs:*:*:*",
       "Effect": "Allow"
