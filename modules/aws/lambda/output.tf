@@ -3,5 +3,5 @@ output "lambda_arn" {
 }
 
 output "lambda_role_name" {
-    value = "${aws_lambda_function.function_iam_role.name}"
+    value = "${aws_iam_role.function_iam_role.name}"
 }
