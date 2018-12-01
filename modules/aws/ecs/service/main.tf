@@ -45,6 +45,11 @@ resource "aws_ecs_task_definition" "task_definition" {
                 "hostPort": 51840,
                 "containerPort": 51840,
                 "protocol": "udp"
+            },
+            {
+                "hostPort": 80,
+                "containerPort": 55555,
+                "protocol": "tcp"
             }
         ],
         "environment": [
