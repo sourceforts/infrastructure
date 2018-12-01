@@ -16,15 +16,19 @@ resource "aws_iam_role" "function_iam_role" {
   ]
 }
 EOF
+
+  depends_on = "${var.depends_on}"
 }
 
 resource "aws_lambda_function" "function" {
-    function_name   = "${var.name}"
-    s3_bucket       = "${var.bucket_name}"
-    s3_key          = "${var.name}.zip"
-    handler         = "index.handler"
-    runtime         = "nodejs8.10"
-    role            = "${aws_iam_role.function_iam_role.arn}"
-    memory_size     = 1024
-    timeout         = 300
+  function_name   = "${var.name}"
+  s3_bucket       = "${var.bucket_name}"
+  s3_key          = "${var.name}.zip"
+  handler         = "index.handler"
+  runtime         = "nodejs8.10"
+  role            = "${aws_iam_role.function_iam_role.arn}"
+  memory_size     = 1024
+  timeout         = 300
+
+  depends_on = "${var.depends_on}"
 }
