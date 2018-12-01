@@ -5,7 +5,7 @@ resource "aws_ecs_task_definition" "task_definition" {
     {
         "name": "${var.name}",
         "image": "sourceforts/server",
-        "cpu": 512,
+        "cpu": 256,
         "memoryReservation": 256,
         "logConfiguration": {
             "logDriver": "awslogs",
