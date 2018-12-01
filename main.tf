@@ -47,3 +47,12 @@ module "ap-southeast-2" {
         "aws" = "aws.ap-southeast-2"
     }
 }
+
+module "server-notifier" {
+    source = "modules/server-notifier"
+    region = "eu-west-2"
+
+    providers = {
+        "aws" = "aws.eu-west-2"
+    }
+}
