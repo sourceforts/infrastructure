@@ -71,4 +71,8 @@ module "build-invoker" {
     source              = "modules/build-invoker"
     region              = "eu-west-2"
     lambda_bucket_name  = "${aws_s3_bucket.lambda_bucket.id}"
+
+    providers = {
+        "aws" = "aws.eu-west-2"
+    }
 }
