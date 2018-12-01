@@ -67,7 +67,7 @@ resource "aws_iam_policy" "function_describe_addresses" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "function_logging_attachment" {
+resource "aws_iam_role_policy_attachment" "function_describe_addresses_attachment" {
   role = "${aws_iam_role.function_iam_role.name}"
   policy_arn = "${aws_iam_policy.function_describe_addresses.arn}"
 }
