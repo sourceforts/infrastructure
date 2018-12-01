@@ -7,7 +7,7 @@ module "topic" {
     source = "../../aws/sns"
     name   = "${local.topic_name}"
 
-    depends_on = "${var.depends_on}"
+    depends_on = ["${var.depends_on}"]
 }
 
 module "handler" {
@@ -16,7 +16,7 @@ module "handler" {
     name        = "${local.function_name}"
     bucket_name = "${var.lambda_bucket_name}"
 
-    depends_on = "${var.depends_on}"
+    depends_on = ["${var.depends_on}"]
 }
 
 resource "aws_lambda_permission" "handler_permission" {
@@ -26,7 +26,7 @@ resource "aws_lambda_permission" "handler_permission" {
     principal     = "sns.amazonaws.com"
     source_arn    = "${module.topic.topic_arn}"
 
-    depends_on = "${var.depends_on}"
+    depends_on = ["${var.depends_on}"]
 }
 
 resource "aws_sns_topic_subscription" "handler_subscription" {
@@ -34,5 +34,5 @@ resource "aws_sns_topic_subscription" "handler_subscription" {
     protocol  = "lambda"
     endpoint  = "${module.handler.lambda_arn}"
 
-    depends_on = "${var.depends_on}"
+    depends_on = ["${var.depends_on}"]
 }
