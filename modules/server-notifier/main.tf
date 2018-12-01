@@ -5,12 +5,11 @@ locals {
 
 module "topic" {
     source = "../aws/sns"
-
-    name = "${local.topic_name}"
+    name   = "${local.topic_name}"
 }
 
 module "handler" {
-    source = "../aws/lambda"
+    source      = "../aws/lambda"
 
     name        = "${local.function_name}"
     bucket_name = "${var.lambda_bucket_name}"
