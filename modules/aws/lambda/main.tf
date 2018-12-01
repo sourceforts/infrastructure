@@ -19,7 +19,7 @@ EOF
 }
 
 resource "aws_iam_policy" "function_logging" {
-  name = "lambda_logging"
+  name = "function_logging"
   path = "/"
 
   policy = <<EOF
@@ -47,7 +47,7 @@ resource "aws_iam_role_policy_attachment" "function_logging_attachment" {
 }
 
 resource "aws_iam_policy" "function_describe_addresses" {
-  name = "lambda_logging"
+  name = "function_describe_addresses"
   path = "/"
 
   policy = <<EOF
