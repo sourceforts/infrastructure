@@ -17,8 +17,4 @@ module "build-invoker" {
     source              = "build-invoker"
     region              = "${var.region}"
     lambda_bucket_name  = "${aws_s3_bucket.lambda_bucket.id}"
-
-    depends_on = [
-        "aws_s3_bucket.lambda_bucket"
-    ]
 }

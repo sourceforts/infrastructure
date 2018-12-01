@@ -10,8 +10,6 @@ resource "aws_s3_bucket" "artifact_bucket" {
     versioning {
         enabled = true
     }
-
-    depends_on = ["${var.depends_on}"]
 }
 
 module "handler" {
@@ -19,8 +17,6 @@ module "handler" {
 
     name        = "${local.function_name}"
     bucket_name = "${var.lambda_bucket_name}"
-
-    depends_on = ["${var.depends_on}"]
 }
 
 resource "aws_lambda_permission" "invoker_permission" {
@@ -29,8 +25,6 @@ resource "aws_lambda_permission" "invoker_permission" {
     function_name = "${local.function_name}"
     principal     = "s3.amazonaws.com"
     source_arn    = "${aws_s3_bucket.artifact_bucket.arn}"
-
-    depends_on = ["${var.depends_on}"]
 }
 
 resource "aws_s3_bucket_notification" "invoker_notification" {
@@ -41,6 +35,4 @@ resource "aws_s3_bucket_notification" "invoker_notification" {
         events              = ["s3:ObjectCreated:*"]
         filter_suffix       = ".7z"
     }
-
-    depends_on = ["${var.depends_on}"]
 }

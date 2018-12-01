@@ -16,8 +16,6 @@ resource "aws_iam_role" "function_iam_role" {
   ]
 }
 EOF
-
-  depends_on = ["${var.depends_on}"]
 }
 
 resource "aws_lambda_function" "function" {
@@ -29,6 +27,4 @@ resource "aws_lambda_function" "function" {
   role            = "${aws_iam_role.function_iam_role.arn}"
   memory_size     = 1024
   timeout         = 300
-
-  depends_on = ["${var.depends_on}"]
 }

@@ -19,6 +19,4 @@ resource "aws_sns_topic" "topic" {
   }
 }
 EOF
-
-  depends_on = ["${var.depends_on}"]
 }
