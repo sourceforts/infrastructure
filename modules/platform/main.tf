@@ -19,6 +19,6 @@ module "build-invoker" {
     lambda_bucket_name  = "${aws_s3_bucket.lambda_bucket.id}"
 
     depends_on = [
-        "${aws_s3_bucket.lambda_bucket}"
+        "aws_s3_bucket.lambda_bucket"
     ]
 }
