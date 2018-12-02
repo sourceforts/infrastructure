@@ -4,13 +4,6 @@ variable "cluster_tag_key" {}
 variable "cluster_tag_value" {}
 variable "instance_type" {}
 variable "vpc_id" {}
-variable "allowed_ssh_cidr_blocks" {
-    type = "list"
-}
-variable "allowed_inbound_cidr_blocks" {
-    type = "list"
-}
-variable "ssh_key_name" {}
 
 variable "availability_zones" {
   description = "The availability zones into which the EC2 Instances should be deployed. We recommend one availability zone per node in the cluster_size variable. At least one of var.subnet_ids or var.availability_zones must be non-empty."
