@@ -76,7 +76,7 @@ module "updater-platform" {
 }
 
 locals {
-    discovery_cluster_name = "sourceforts-discovery-cluster"
+    discovery_cluster_name = "sf-disc"
 }
 
 resource "aws_key_pair" "service_discovery_key_pair" {
@@ -105,7 +105,7 @@ module "service-discovery-cluster" {
     allowed_inbound_cidr_blocks = ["0.0.0.0/0"]
     ssh_key_name                = "${aws_key_pair.service_discovery_key_pair.key_name}"
 
-    providers {
+    providers = {
         "aws" = "aws.eu-west-2"
     }
 }
