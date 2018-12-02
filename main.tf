@@ -25,6 +25,10 @@ module "eu-west-2" {
     source = "modules/dedicated-server-cluster"
     region = "eu-west-2"
 
+    subnet_cidrs = [
+        "10.0.0.0/24"
+    ]
+
     providers = {
         "aws" = "aws.eu-west-2"
     }
@@ -34,6 +38,10 @@ module "us-east-1" {
     source = "modules/dedicated-server-cluster"
     region = "us-east-1"
 
+    subnet_cidrs = [
+        "10.0.1.0/24"
+    ]
+
     providers = {
         "aws" = "aws.us-east-1"
     }
@@ -42,6 +50,10 @@ module "us-east-1" {
 module "ap-southeast-2" {
     source = "modules/dedicated-server-cluster"
     region = "ap-southeast-2"
+
+    subnet_cidrs = [
+        "10.0.2.0/24"
+    ]
 
     providers = {
         "aws" = "aws.ap-southeast-2"
