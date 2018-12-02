@@ -28,7 +28,7 @@ resource "aws_s3_bucket" "artifact_bucket" {
 }
 resource "aws_lambda_function" "function" {
   function_name   = "${var.name}"
-  s3_bucket       = "${var.bucket_name}"
+  s3_bucket       = "${var.lambda_bucket_name}"
   s3_key          = "${var.name}.zip"
   handler         = "index.handler"
   runtime         = "nodejs8.10"
@@ -53,7 +53,7 @@ resource "aws_s3_bucket_notification" "invoker_notification" {
   bucket = "${aws_s3_bucket.artifact_bucket.id}"
 
   lambda_function {
-    lambda_function_arn = "${module.handler.lambda_arn}"
+    lambda_function_arn = "${aws_lambda_function.function.arn}"
     events              = ["s3:ObjectCreated:*"]
     filter_suffix       = ".7z"
   }
