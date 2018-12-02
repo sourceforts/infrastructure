@@ -56,6 +56,30 @@ resource "aws_ecs_task_definition" "task_definition" {
             {
                 "name": "HOSTNAME",
                 "value": "aws-${var.region}"
+            },
+            {
+                "name": "SERVICE_27015_NAME",
+                "value": "${var.name}"   
+            },
+            {
+                "name": "SERVICE_27005_NAME",
+                "value": "${var.name}"
+            },
+            {
+                "name": "SERVICE_27020_NAME",
+                "value": "${var.name}"
+            },
+            {
+                "name": "SERVICE_26900_NAME",
+                "value": "${var.name}"
+            },
+            {
+                "name": "SERVICE_51840_NAME",
+                "value": "${var.name}"
+            },
+            {
+                "name": "SERVICE_80_NAME",
+                "value": "${var.name}"
             }
         ]
     }
