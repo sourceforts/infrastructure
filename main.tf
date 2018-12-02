@@ -25,6 +25,7 @@ module "eu-west-2" {
     source = "modules/dedicated-server-cluster"
     region = "eu-west-2"
 
+    vpc_cidr = "10.0.0.0/16"
     subnet_cidrs = [
         "10.0.0.0/24"
     ]
@@ -38,8 +39,9 @@ module "us-east-1" {
     source = "modules/dedicated-server-cluster"
     region = "us-east-1"
 
+    vpc_cidr = "10.1.0.0/16"
     subnet_cidrs = [
-        "10.0.1.0/24"
+        "10.1.0.0/24"
     ]
 
     providers = {
@@ -51,8 +53,9 @@ module "ap-southeast-2" {
     source = "modules/dedicated-server-cluster"
     region = "ap-southeast-2"
 
+    vpc_cidr = "10.2.0.0/16"
     subnet_cidrs = [
-        "10.0.2.0/24"
+        "10.2.0.0/24"
     ]
 
     providers = {
