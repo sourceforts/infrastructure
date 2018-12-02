@@ -123,11 +123,6 @@ data "aws_ami" "consul" {
   }
 
   filter {
-    name   = "is-public"
-    values = ["true"]
-  }
-
-  filter {
     name   = "name"
     values = ["consul-ubuntu-*"]
   }
