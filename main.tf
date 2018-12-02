@@ -94,6 +94,12 @@ module "service-discovery-cluster" {
     instance_type       = "t2.nano"
     vpc_id              = "${module.eu-west-2.vpc_id}"
 
+    availability_zones = [
+        "eu-west-2a",
+        "eu-west-2b",
+        "eu-west-2c",
+    ]
+
     # TODO; security
     allowed_ssh_cidr_blocks     = ["0.0.0.0/0"]
     allowed_inbound_cidr_blocks = ["0.0.0.0/0"]
@@ -113,6 +119,12 @@ module "service-discovery-client-eu-west-2" {
     cluster_tag_value   = "${local.discovery_cluster_name}"
     instance_type       = "t2.nano"
     vpc_id              = "${module.eu-west-2.vpc_id}"
+
+    availability_zones = [
+        "eu-west-2a",
+        "eu-west-2b",
+        "eu-west-2c",
+    ]
 
     # TODO; security
     allowed_ssh_cidr_blocks     = ["0.0.0.0/0"]
@@ -134,6 +146,12 @@ module "service-discovery-client-us-east-1" {
     instance_type       = "t2.nano"
     vpc_id              = "${module.us-east-1.vpc_id}"
 
+    availability_zones = [
+        "us-east-1a",
+        "us-east-1b",
+        "us-east-1c",
+    ]
+
     # TODO; security
     allowed_ssh_cidr_blocks     = ["0.0.0.0/0"]
     allowed_inbound_cidr_blocks = ["0.0.0.0/0"]
@@ -153,6 +171,12 @@ module "service-discovery-client-ap-southeast-2" {
     cluster_tag_value   = "${local.discovery_cluster_name}"
     instance_type       = "t2.nano"
     vpc_id              = "${module.ap-southeast-2.vpc_id}"
+
+    availability_zones = [
+        "ap-southeast-2a",
+        "ap-southeast-2b",
+        "ap-southeast-2c",
+    ]
 
     # TODO; security
     allowed_ssh_cidr_blocks     = ["0.0.0.0/0"]
