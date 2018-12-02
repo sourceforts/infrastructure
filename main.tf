@@ -50,7 +50,6 @@ module "ap-southeast-2" {
 
 resource "aws_vpc_peering_connection" "eu_us_peer" {
     provider    = "aws.eu-west-2"
-    region      = "eu-west-2"
 
     vpc_id      = "${module.eu-west-2.vpc_id}"
     peer_vpc_id = "${module.us-east-1.vpc_id}"
@@ -60,7 +59,6 @@ resource "aws_vpc_peering_connection" "eu_us_peer" {
 
 resource "aws_vpc_peering_connection" "eu_ap_peer" {
     provider    = "aws.eu-west-2"
-    region      = "eu-west-2"
 
     vpc_id      = "${module.eu-west-2.vpc_id}"
     peer_vpc_id = "${module.ap-southeast-2.vpc_id}"
@@ -70,7 +68,6 @@ resource "aws_vpc_peering_connection" "eu_ap_peer" {
 
 resource "aws_vpc_peering_connection" "us_ap_peer" {
     provider    = "aws.us-east-1"
-    region      = "us-east-1"
 
     vpc_id      = "${module.us-east-1.vpc_id}"
     peer_vpc_id = "${module.ap-southeast-2.vpc_id}"
