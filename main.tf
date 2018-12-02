@@ -68,7 +68,7 @@ resource "aws_vpc_peering_connection" "eu_us_peer" {
 
     vpc_id      = "${module.eu-west-2.vpc_id}"
     peer_vpc_id = "${module.us-east-1.vpc_id}"
-    auto_accept = true
+    peer_region = "us-east-1"
 }
 
 resource "aws_vpc_peering_connection" "eu_ap_peer" {
@@ -76,7 +76,7 @@ resource "aws_vpc_peering_connection" "eu_ap_peer" {
 
     vpc_id      = "${module.eu-west-2.vpc_id}"
     peer_vpc_id = "${module.ap-southeast-2.vpc_id}"
-    auto_accept = true
+    peer_region = "ap-southeast-2"
 }
 
 resource "aws_vpc_peering_connection" "us_ap_peer" {
@@ -84,7 +84,7 @@ resource "aws_vpc_peering_connection" "us_ap_peer" {
 
     vpc_id      = "${module.us-east-1.vpc_id}"
     peer_vpc_id = "${module.ap-southeast-2.vpc_id}"
-    auto_accept = true
+    peer_region = "ap-southeast-2"
 }
 
 module "updater-platform" {

@@ -1,5 +1,5 @@
 locals {
-    bucket_name = "sf-artifacts"
+    bucket_name = "sf-game-artifacts"
     function_name = "sf-build-invoker"
 }
 
