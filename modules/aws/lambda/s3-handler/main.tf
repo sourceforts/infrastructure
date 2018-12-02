@@ -45,7 +45,8 @@ resource "aws_lambda_permission" "invoker_permission" {
   source_arn    = "${aws_s3_bucket.artifact_bucket.arn}"
 
   depends_on = [
-    "aws_lambda_function.function"
+    "aws_lambda_function.function",
+    "aws_s3_bucket.artifact_bucket"
   ]
 }
 
@@ -59,6 +60,7 @@ resource "aws_s3_bucket_notification" "invoker_notification" {
   }
 
   depends_on = [
-    "aws_lambda_function.function"
+    "aws_lambda_function.function",
+    "aws_s3_bucket.artifact_bucket"
   ]
 }
