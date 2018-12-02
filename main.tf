@@ -88,7 +88,8 @@ locals {
     discovery_cluster_name = "sf-disc"
 }
 
-resource "aws_key_pair" "service_discovery_key_pair" {
+resource "aws_key_pair" "service_discovery_key_pair_eu" {
+    provider    = "aws.eu-west-2"
     key_name    = "${local.discovery_cluster_name}-ssh-access-key"
     public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAmzUAX4OZdMV2znUjXvhLV/qhMgu4jmRL8bt7yBqPIUEBwLbGxVupsPKxT2+FASy55pdkCKGpWOOoPgtLT4Wj/pLTkwPlRt7HJb3ie8SbU8Sp4gPAI+DsF6lC772bn5Mz16Ogb3YZEAI8csxhjJZw1RJASwPoLe62zzOhqFFOT/KQcQS119NzwLUMWawERgUaSypRac5qLYQav6zz6ePSQ9CeDQT8hk7wTg5Fp3kOed0gEZ8F7PhirJnnvU5iIsvJpiPR9+DohdObv3VXswtB8NILzSyVDcwoLZhVj0lVNSaXE6slXTQPGVslde8t4vHc2voTSzFO1otWVgxoeiCF/w== rsa-key-20181127"
 }
@@ -112,7 +113,7 @@ module "service-discovery-cluster" {
     # TODO; security
     allowed_ssh_cidr_blocks     = ["0.0.0.0/0"]
     allowed_inbound_cidr_blocks = ["0.0.0.0/0"]
-    ssh_key_name                = "${aws_key_pair.service_discovery_key_pair.key_name}"
+    ssh_key_name                = "${aws_key_pair.service_discovery_key_pair_eu.key_name}"
 
     providers = {
         "aws" = "aws.eu-west-2"
@@ -138,11 +139,17 @@ module "service-discovery-client-eu-west-2" {
     # TODO; security
     allowed_ssh_cidr_blocks     = ["0.0.0.0/0"]
     allowed_inbound_cidr_blocks = ["0.0.0.0/0"]
-    ssh_key_name                = "${aws_key_pair.service_discovery_key_pair.key_name}"
+    ssh_key_name                = "${aws_key_pair.service_discovery_key_pair_eu.key_name}"
 
     providers = {
         "aws" = "aws.eu-west-2"
     }
+}
+
+resource "aws_key_pair" "service_discovery_key_pair_us" {
+    provider    = "aws.us-east-1"
+    key_name    = "${local.discovery_cluster_name}-ssh-access-key"
+    public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAmzUAX4OZdMV2znUjXvhLV/qhMgu4jmRL8bt7yBqPIUEBwLbGxVupsPKxT2+FASy55pdkCKGpWOOoPgtLT4Wj/pLTkwPlRt7HJb3ie8SbU8Sp4gPAI+DsF6lC772bn5Mz16Ogb3YZEAI8csxhjJZw1RJASwPoLe62zzOhqFFOT/KQcQS119NzwLUMWawERgUaSypRac5qLYQav6zz6ePSQ9CeDQT8hk7wTg5Fp3kOed0gEZ8F7PhirJnnvU5iIsvJpiPR9+DohdObv3VXswtB8NILzSyVDcwoLZhVj0lVNSaXE6slXTQPGVslde8t4vHc2voTSzFO1otWVgxoeiCF/w== rsa-key-20181127"
 }
 
 module "service-discovery-client-us-east-1" {
@@ -164,11 +171,17 @@ module "service-discovery-client-us-east-1" {
     # TODO; security
     allowed_ssh_cidr_blocks     = ["0.0.0.0/0"]
     allowed_inbound_cidr_blocks = ["0.0.0.0/0"]
-    ssh_key_name                = "${aws_key_pair.service_discovery_key_pair.key_name}"
+    ssh_key_name                = "${aws_key_pair.service_discovery_key_pair_us.key_name}"
 
     providers = {
         "aws" = "aws.us-east-1"
     }
+}
+
+resource "aws_key_pair" "service_discovery_key_pair_ap" {
+    provider    = "aws.ap-southeast-2"
+    key_name    = "${local.discovery_cluster_name}-ssh-access-key"
+    public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAmzUAX4OZdMV2znUjXvhLV/qhMgu4jmRL8bt7yBqPIUEBwLbGxVupsPKxT2+FASy55pdkCKGpWOOoPgtLT4Wj/pLTkwPlRt7HJb3ie8SbU8Sp4gPAI+DsF6lC772bn5Mz16Ogb3YZEAI8csxhjJZw1RJASwPoLe62zzOhqFFOT/KQcQS119NzwLUMWawERgUaSypRac5qLYQav6zz6ePSQ9CeDQT8hk7wTg5Fp3kOed0gEZ8F7PhirJnnvU5iIsvJpiPR9+DohdObv3VXswtB8NILzSyVDcwoLZhVj0lVNSaXE6slXTQPGVslde8t4vHc2voTSzFO1otWVgxoeiCF/w== rsa-key-20181127"
 }
 
 module "service-discovery-client-ap-southeast-2" {
@@ -190,7 +203,7 @@ module "service-discovery-client-ap-southeast-2" {
     # TODO; security
     allowed_ssh_cidr_blocks     = ["0.0.0.0/0"]
     allowed_inbound_cidr_blocks = ["0.0.0.0/0"]
-    ssh_key_name                = "${aws_key_pair.service_discovery_key_pair.key_name}"
+    ssh_key_name                = "${aws_key_pair.service_discovery_key_pair_ap.key_name}"
     
     providers = {
         "aws" = "aws.ap-southeast-2"
