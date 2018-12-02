@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "lambda_bucket" {
-    bucket = "sourceforts-lambdas"
+    bucket = "sf-lambdas"
     acl = "private"
 
     versioning {

@@ -1,6 +1,6 @@
 locals {
-    bucket_name = "sourceforts-game-artifacts"
-    function_name = "sourceforts-server-build-invoker"
+    bucket_name = "sf-artifacts"
+    function_name = "sf-build-invoker"
 }
 
 module "handler" {

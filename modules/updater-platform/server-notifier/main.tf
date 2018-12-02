@@ -1,6 +1,6 @@
 locals {
-    topic_name = "sf-build-notifications"
-    function_name = "sf-build-notification-handler"
+    topic_name = "sf-build"
+    function_name = "sf-build-handler"
 }
 
 module "topic" {

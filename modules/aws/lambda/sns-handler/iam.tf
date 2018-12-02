@@ -1,5 +1,5 @@
 resource "aws_iam_policy" "function_logging" {
-  name_prefix = "${var.name}-logging-"
+  name_prefix = "${var.name}-log-"
   path        = "/"
 
   policy = <<EOF
