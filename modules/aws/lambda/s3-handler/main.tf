@@ -1,5 +1,5 @@
 resource "aws_iam_role" "function_iam_role" {
-  name = "${var.name}-iam-role"
+  name_prefix = "${var.name}-role-"
 
   assume_role_policy = <<EOF
 {

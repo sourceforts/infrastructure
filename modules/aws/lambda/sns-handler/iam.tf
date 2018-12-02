@@ -1,6 +1,6 @@
 resource "aws_iam_policy" "function_logging" {
-  name = "${var.name}-function-logging"
-  path = "/"
+  name_prefix = "${var.name}-logging-"
+  path        = "/"
 
   policy = <<EOF
 {
@@ -27,8 +27,8 @@ resource "aws_iam_role_policy_attachment" "function_logging_attachment" {
 }
 
 resource "aws_iam_policy" "function_describe_addresses" {
-  name = "function_describe_addresses"
-  path = "/"
+  name_prefix = "${var.name}-desc-addr-"
+  path        = "/"
 
   policy = <<EOF
 {

@@ -24,7 +24,6 @@ module "aws_cluster" {
     source = "../aws/ecs/cluster"
 
     region              = "${var.region}"
-    name                = "${var.region}-${var.env}"
     cluster_name        = "${var.env}"
     vpc_id              = "${module.aws_network.vpc_id}"
     subnet_ids          = "${module.aws_network.subnet_ids}"

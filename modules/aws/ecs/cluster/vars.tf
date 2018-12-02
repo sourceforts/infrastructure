@@ -1,5 +1,4 @@
 variable "region" {}
-variable "name" {}
 variable "cluster_name" {}
 variable "vpc_id" {}
 variable "instance_type" {}

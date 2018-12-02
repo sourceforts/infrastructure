@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_instance_role" {
-    name = "${var.name}-ecs-instance-role"
+    name_prefix = "${var.cluster_name}-${var.instance_group}-role-"
 
     assume_role_policy = <<EOF
 {
@@ -18,7 +18,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "association_policy" {
-  name = "${var.name}-ecs-instance-association-policy"
+  name = "${var.cluster_name}-${var.instance_group}-policy-"
   role = "${aws_iam_role.ecs_instance_role.id}"
 
   policy = <<EOF
@@ -40,7 +40,7 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "ecs" {
-    name        = "${var.name}-ecs-instance-profile"
+    name_prefix = "${var.cluster_name}-${var.instance_group}-profile-"
     path        = "/"
     role        = "${aws_iam_role.ecs_instance_role.name}"
 }

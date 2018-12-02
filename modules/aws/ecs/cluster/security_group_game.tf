@@ -1,9 +1,8 @@
 resource "aws_security_group" "security_group_game" {
-    name        = "${var.name}-${var.cluster_name}-${var.instance_group}-game"
+    name_prefix = "${var.cluster_name}-${var.instance_group}-game-"
     vpc_id      = "${var.vpc_id}"
 
     tags {
-        name            = "${var.name}"
         cluster         = "${var.cluster_name}"
         instance_group  = "${var.instance_group}"
     }

@@ -1,10 +1,9 @@
 # TODO: Don't allow connections via HTTP(S) via anywhere on the internet!
 resource "aws_security_group" "security_group_init" {
-    name        = "${var.name}-${var.cluster_name}-${var.instance_group}-init"
+    name_prefix = "${var.cluster_name}-${var.instance_group}-init-"
     vpc_id      = "${var.vpc_id}"
 
     tags {
-        name            = "${var.name}"
         cluster         = "${var.cluster_name}"
         instance_group  = "${var.instance_group}"
     }

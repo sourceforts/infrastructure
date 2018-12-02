@@ -1,6 +1,6 @@
 locals {
-    topic_name = "sourceforts-server-build-notifications"
-    function_name = "sourceforts-server-build-notification-handler"
+    topic_name = "sf-build-notifications"
+    function_name = "sf-build-notification-handler"
 }
 
 module "topic" {

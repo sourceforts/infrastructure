@@ -1,7 +1,4 @@
-variable "region" {}
-variable "name" {}
 variable "cluster_name" {}
-variable "vpc_id" {}
 variable "iam_instance_profile_id" {}
 variable "aws_ami" {}
 variable "user_data" {}
