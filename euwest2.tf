@@ -39,7 +39,7 @@ module "eu-west-2" {
         "10.0.0.0/24"
     ]
 
-    disc_server_security_group_id = "${module.service-discovery-server-eu-west-2.lc_security_group}"
+    disc_server_security_group_id = "${module.service-discovery-server-eu-west-2.security_group_id}"
 
     providers = {
         "aws" = "aws.eu-west-2"

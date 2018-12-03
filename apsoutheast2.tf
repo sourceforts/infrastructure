@@ -39,6 +39,8 @@ module "ap-southeast-2" {
         "10.2.0.0/24"
     ]
 
+    disc_server_security_group_id = "${module.service-discovery-server-ap-southeast-2.security_group_id}"
+
     providers = {
         "aws" = "aws.ap-southeast-2"
     }

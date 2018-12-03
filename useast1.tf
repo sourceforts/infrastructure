@@ -39,6 +39,8 @@ module "us-east-1" {
         "10.1.0.0/24"
     ]
 
+    disc_server_security_group_id = "${module.service-discovery-server-us-east-1.security_group_id}"
+
     providers = {
         "aws" = "aws.us-east-1"
     }
