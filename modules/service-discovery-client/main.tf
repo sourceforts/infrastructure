@@ -40,7 +40,7 @@ resource "aws_launch_configuration" "launch_configuration" {
   instance_type = "${var.instance_type}"
   user_data     = "${data.template_file.user_data.rendered}"
 
-  iam_instance_profile        = "${element(coalescelist(list(var.iam_instance_profile_name),aws_iam_instance_profile.instance_profile.*.name),0)}"
+  iam_instance_profile        = "${aws_iam_instance_profile.instance_profile.id}"
   key_name                    = "${var.ssh_key_name}"
   security_groups             = ["${concat(list(aws_security_group.lc_security_group.id), var.additional_security_group_ids)}"]
   placement_tenancy           = "${var.tenancy}"
