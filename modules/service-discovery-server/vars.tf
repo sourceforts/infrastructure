@@ -2,6 +2,11 @@ variable "cluster_name" {}
 variable "cluster_size" {}
 variable "cluster_tag_key" {}
 variable "cluster_tag_value" {}
+variable "cluster_aws_regions" {
+  type = "list"
+  default = []
+}
+
 variable "instance_type" {}
 variable "vpc_id" {}
 
