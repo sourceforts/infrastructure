@@ -31,11 +31,21 @@ resource "aws_security_group_rule" "allow_server_rpc_inbound" {
   security_group_id = "${aws_security_group.security_group_consul.id}"
 }
 
-resource "aws_security_group_rule" "allow_cli_rpc_inbound" {
+resource "aws_security_group_rule" "allow_serf_lan_tcp_inbound" {
   type        = "ingress"
-  from_port   = "${var.cli_rpc_port}"
-  to_port     = "${var.cli_rpc_port}"
+  from_port   = "${var.serf_lan_port}"
+  to_port     = "${var.serf_lan_port}"
   protocol    = "tcp"
+  source_security_group_id = "${var.disc_server_security_group_id}"
+
+  security_group_id = "${aws_security_group.security_group_consul.id}"
+}
+
+resource "aws_security_group_rule" "allow_serf_lan_udp_inbound" {
+  type        = "ingress"
+  from_port   = "${var.serf_lan_port}"
+  to_port     = "${var.serf_lan_port}"
+  protocol    = "udp"
   source_security_group_id = "${var.disc_server_security_group_id}"
 
   security_group_id = "${aws_security_group.security_group_consul.id}"
@@ -56,6 +66,16 @@ resource "aws_security_group_rule" "allow_serf_wan_udp_inbound" {
   from_port   = "${var.serf_wan_port}"
   to_port     = "${var.serf_wan_port}"
   protocol    = "udp"
+  source_security_group_id = "${var.disc_server_security_group_id}"
+
+  security_group_id = "${aws_security_group.security_group_consul.id}"
+}
+
+resource "aws_security_group_rule" "allow_cli_rpc_inbound" {
+  type        = "ingress"
+  from_port   = "${var.cli_rpc_port}"
+  to_port     = "${var.cli_rpc_port}"
+  protocol    = "tcp"
   source_security_group_id = "${var.disc_server_security_group_id}"
 
   security_group_id = "${aws_security_group.security_group_consul.id}"
@@ -108,6 +128,26 @@ resource "aws_security_group_rule" "allow_cli_rpc_inbound_from_self" {
   from_port = "${var.cli_rpc_port}"
   to_port   = "${var.cli_rpc_port}"
   protocol  = "tcp"
+  self      = true
+
+  security_group_id = "${aws_security_group.security_group_consul.id}"
+}
+
+resource "aws_security_group_rule" "allow_serf_lan_tcp_inbound_from_self" {
+  type      = "ingress"
+  from_port = "${var.serf_lan_port}"
+  to_port   = "${var.serf_lan_port}"
+  protocol  = "tcp"
+  self      = true
+
+  security_group_id = "${aws_security_group.security_group_consul.id}"
+}
+
+resource "aws_security_group_rule" "allow_serf_lan_udp_inbound_from_self" {
+  type      = "ingress"
+  from_port = "${var.serf_lan_port}"
+  to_port   = "${var.serf_lan_port}"
+  protocol  = "udp"
   self      = true
 
   security_group_id = "${aws_security_group.security_group_consul.id}"
