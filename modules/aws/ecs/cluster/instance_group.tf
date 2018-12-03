@@ -33,6 +33,8 @@ data "template_file" "user_data" {
         custom_user_data    = "${var.custom_user_data}"
         cloudwatch_prefix   = "${var.cloudwatch_prefix}"
         eip_allocation_id   = "${var.aws_eip_id}"
+        consul_tag_key      = "${var.consul_tag_key}"
+        consul_tag_value    = "${var.consul_tag_value}"
     }
 }
 
