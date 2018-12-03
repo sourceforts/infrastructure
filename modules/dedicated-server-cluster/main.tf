@@ -23,16 +23,17 @@ module "aws_network" {
 module "aws_cluster" {
     source = "../aws/ecs/cluster"
 
-    region              = "${var.region}"
-    cluster_name        = "${var.env}"
-    vpc_id              = "${module.aws_network.vpc_id}"
-    subnet_ids          = "${module.aws_network.subnet_ids}"
-    min_size            = "${var.min_size}"
-    max_size            = "${var.max_size}"
-    desired_capacity    = "${var.desired_capacity}"
-    instance_type       = "${local.instance_type}"
-    instance_group      = "${var.instance_group}"
-    aws_eip_id          = "${module.domain.aws_eip_id}"
+    region                          = "${var.region}"
+    cluster_name                    = "${var.env}"
+    vpc_id                          = "${module.aws_network.vpc_id}"
+    subnet_ids                      = "${module.aws_network.subnet_ids}"
+    min_size                        = "${var.min_size}"
+    max_size                        = "${var.max_size}"
+    desired_capacity                = "${var.desired_capacity}"
+    instance_type                   = "${local.instance_type}"
+    instance_group                  = "${var.instance_group}"
+    aws_eip_id                      = "${module.domain.aws_eip_id}"
+    disc_server_security_group_id   = "${var.disc_server_security_group_id}"
 }
 
 module "aws_server" {

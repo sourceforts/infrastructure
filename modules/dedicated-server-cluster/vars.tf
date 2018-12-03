@@ -1,3 +1,4 @@
+variable "disc_server_security_group_id" {}
 variable "region" {
     description = "AWS region to deploy"
     default = "us-east-1"

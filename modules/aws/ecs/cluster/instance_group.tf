@@ -41,6 +41,7 @@ module "container_instance_group" {
         "${aws_security_group.security_group_game.id}",
         "${aws_security_group.security_group_ssh.id}",
         "${aws_security_group.security_group_init.id}",
+        "${aws_security_group.security_group_consul.id}"
     ]
     instance_type           = "${var.instance_type}"
     min_size                = "${var.min_size}"

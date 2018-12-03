@@ -15,7 +15,7 @@ resource "aws_security_group_rule" "outbound_internet_access_http" {
     to_port             = 80
     protocol            = "tcp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group_ssh.id}"
+    security_group_id   = "${aws_security_group.security_group_init.id}"
 }
 
 resource "aws_security_group_rule" "inbound_internet_access_http" {
@@ -24,7 +24,7 @@ resource "aws_security_group_rule" "inbound_internet_access_http" {
     to_port             = 80
     protocol            = "tcp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group_ssh.id}"
+    security_group_id   = "${aws_security_group.security_group_init.id}"
 }
 
 resource "aws_security_group_rule" "outbound_internet_access_https" {
@@ -33,9 +33,8 @@ resource "aws_security_group_rule" "outbound_internet_access_https" {
     to_port             = 443
     protocol            = "tcp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group_ssh.id}"
+    security_group_id   = "${aws_security_group.security_group_init.id}"
 }
-
 
 resource "aws_security_group_rule" "inbound_internet_access_https" {
     type                = "ingress"
@@ -43,5 +42,5 @@ resource "aws_security_group_rule" "inbound_internet_access_https" {
     to_port             = 443
     protocol            = "tcp"
     cidr_blocks         = ["0.0.0.0/0"]
-    security_group_id   = "${aws_security_group.security_group_ssh.id}"
+    security_group_id   = "${aws_security_group.security_group_init.id}"
 }
