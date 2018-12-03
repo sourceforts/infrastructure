@@ -32,7 +32,7 @@ resource "aws_iam_role_policy" "association_policy" {
         "ec2:ReleaseAddress",
         "ec2:DescribeInstances",
         "ec2:DescribeTags",
-        "autoscaling:DescribeAutoScalingGroups",
+        "autoscaling:DescribeAutoScalingGroups"
       ],
       "Resource": "*",
       "Effect": "Allow"
