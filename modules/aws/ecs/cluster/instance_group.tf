@@ -1,24 +1,16 @@
-data "aws_ami" "ecs_ami" {
+data "aws_ami" "game_host" {
   most_recent = true
 
-  filter {
-    name   = "name"
-    values = ["amzn-ami-*-amazon-ecs-optimized"]
-  }
-
-  filter {
-    name   = "owner-alias"
-    values = ["self", "amazon"]
-  }
-
-  filter {
-    name   = "architecture"
-    values = ["x86_64"]
-  }
+  owners = ["self"]
 
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
+  }
+
+  filter {
+    name   = "name"
+    values = ["game-host-amazon-linux-*"]
   }
 }
 
@@ -43,7 +35,7 @@ module "container_instance_group" {
 
     cluster_name            = "${var.cluster_name}"
     instance_group          = "${var.instance_group}"
-    aws_ami                 = "${join("", data.aws_ami.ecs_ami.*.image_id)}"
+    aws_ami                 = "${join("", data.aws_ami.game_host.*.image_id)}"
     subnet_ids              = "${var.subnet_ids}"
     security_groups         = [
         "${aws_security_group.security_group_game.id}",
