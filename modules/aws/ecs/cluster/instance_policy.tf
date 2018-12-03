@@ -27,9 +27,12 @@ resource "aws_iam_role_policy" "association_policy" {
   "Statement": [
     {
       "Action": [
-         "ec2:AssociateAddress",
-         "ec2:DisassociateAddress",
-         "ec2:ReleaseAddress"
+        "ec2:AssociateAddress",
+        "ec2:DisassociateAddress",
+        "ec2:ReleaseAddress",
+        "ec2:DescribeInstances",
+        "ec2:DescribeTags",
+        "autoscaling:DescribeAutoScalingGroups",
       ],
       "Resource": "*",
       "Effect": "Allow"
