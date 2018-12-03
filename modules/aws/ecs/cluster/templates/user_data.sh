@@ -1,11 +1,10 @@
 #!/bin/bash
 
-# Timezone
-ln -fs /usr/share/zoneinfo/UTC /etc/localtime
+set -e
 
-#Using script from http://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_cloudwatch_logs.html
-# Install awslogs and the jq JSON parser
-yum install -y awslogs jq aws-cli
+# Send the log output from this script to user-data.log, syslog, and the console
+# From: https://alestic.com/2010/12/ec2-user-data-output/
+exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
 
 # ECS config
 ${ecs_config}
@@ -85,17 +84,10 @@ aws ec2 associate-address --region $region \
 
 start ecs
 
-#Get ECS instance info, althoug not used in this user_data it self this allows you to use
-#az(availability zone) and region
-until $(curl --output /dev/null --silent --head --fail http://localhost:51678/v1/metadata); do
-  printf '.'
-  sleep 5
-done
-instance_arn=$(curl -s http://localhost:51678/v1/metadata | jq -r '. | .ContainerInstanceArn' | awk -F/ '{print $NF}' )
-az=$(curl -s http://instance-data/latest/meta-data/placement/availability-zone)
-region=$${az:0:$${#az} - 1}
+# Run the consul client
+/opt/consul/bin/run-consul --client --cluster-tag-key "${consul_tag_key}" --cluster-tag-value "${consul_tag_value}"
 
-#Custom userdata script code
+# Custom userdata script code
 ${custom_user_data}
 
 echo "Done"

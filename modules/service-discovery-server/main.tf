@@ -108,7 +108,8 @@ data "template_file" "user_data" {
 
   vars {
     cluster_tag_key   = "${var.cluster_tag_key}"
-    cluster_tag_value = "${var.cluster_tag_value}"
+    cluster_tag_value = "${var.cluster_name}"
+    cluster_aws_regions = "${format("(\"%s\")", join("\" \"", var.cluster_aws_regions))}"
   }
 }
 

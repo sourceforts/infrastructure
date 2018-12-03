@@ -38,3 +38,11 @@ variable "ecs_logging" {
 variable "cloudwatch_prefix" {
     default = ""
 }
+
+variable "consul_tag_key" {
+    default = "consul-servers"
+}
+
+variable "consul_tag_value" {
+    default = "sf-disc"
+}

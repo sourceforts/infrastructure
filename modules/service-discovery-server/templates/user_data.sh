@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# TODO awslogs driver
-
 set -e
 
 # Send the log output from this script to user-data.log, syslog, and the console
