@@ -6,6 +6,12 @@ defaults: &defaults
     - image: hashicorp/terraform
 
 jobs:
+  destroy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /sourceforts-infrastructure
+      - run: terraform destroy -force=true
   init:
     <<: *defaults
     steps:
@@ -50,19 +56,7 @@ workflows:
     jobs:
       - init:
           context: sourceforts-server
-      - validate:
+      - destroy:
           context: sourceforts-server
           requires:
             - init
-      - plan:
-          context: sourceforts-server
-          requires:
-            - validate
-      - hold-apply:
-          type: approval
-          requires:
-            - plan
-      - apply:
-          context: sourceforts-server
-          requires:
-            - hold-apply
